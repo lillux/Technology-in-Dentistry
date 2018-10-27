@@ -1,17 +1,15 @@
 % Chapter Template
 
-\chapter{Il processo di stampa 3d} % Main chapter title
+\chapter{3D Printing Process} % Main chapter title
 
 \label{Chapter5} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
  %----------------------------------------------------
 
+3D printing, also called rapid prototyping or additive manufacturing, is a manufacturing technique that allows to obtain physical objects from digital models, through the creation of two-dimensional sections of the object to be manufactured, which are produced one on the other to form the final three-dimensional prototype.
 
-
-La stampa 3D, anche chiamata prototipazione rapida o manifattura additiva, è una tecnica di manifattura che permette di ottenere oggetti fisici da modelli digitali, attraverso la creazione di sezioni bidimensionali dell'oggetto da fabbricare, che vengono prodotte l'una sull'altra a formare il prototipo finale tridimensionale.
-
-\section{Tecnologie di manifattura additiva}
-Sono disponibili diverse tecniche di stampa e molti materiali come polimeri termoplastici, gesso, carta, resine fotopolimerizzabili, metalli, ceramiche, gel e altri \parencite{Reference119}, \parencite{Reference120}. Ogni tecnica di prototipazione rapida ha caratteristiche particolari che si adattano alla soluzione di problemi specifici. Perciò descriveremo le principali tecniche di manifattura additiva utilizzate in ambito odontoiatrico, e successivamente ne vedremo l'implementazione clinica.
+\section{Additive Manufacturing Technologies}
+Various printing techniques and many materials are available such as thermoplastic polymers, gypsum, paper, light-curing resins, metals, ceramics, gels and other \parencite{Reference119}, \parencite{Reference120}. Each rapid prototyping technique has special characteristics that adapt to the solution of specific problems. Therefore we will describe the main additive manufacturing techniques used in the dental field, and then we will see the clinical implementation.
 
 \subsection{Fused Deposition Modeling (FDM)}
 \begin{wrapfigure} {R} {0.4\textwidth}
@@ -23,7 +21,7 @@ Sono disponibili diverse tecniche di stampa e molti materiali come polimeri term
 	\end{center}
 \vspace{-40pt}
 \end{wrapfigure}
-La stampa FDM, anche conosciuta come \emph{Fused Filament Fabrication} (FFF), consiste nella deposizione di un polimero termoplastico, che viene estruso attraverso un ugello termoregolabile su un piano, strato dopo strato fino a formare il modello tridimensionale. Questo tipo di tecnologia si adatta a vari materiali a bassa viscosità e ai materiali termoplastici, è poco costosa e relativamente veloce. La precisione dipende dalle specifiche della stampante, arrivando fino a poche decine di micron. 
+FDM printing, also known as \emph{Fused Filament Fabrication} (FFF), consists of the deposition of a thermoplastic polymer, which is extruded through a thermoregulable nozzle on a plane, layer by layer until forming the three-dimensional model. This type of technology adapts to various low viscosity materials and thermoplastic materials, is inexpensive and relatively fast. The accuracy depends on the specifications of the printer, reaching up to a few tens of microns.
 \pagebreak
 \subsection{Stereolitografia (SLA)}
 \begin{wrapfigure} {R} {0.37\textwidth}
@@ -35,7 +33,7 @@ La stampa FDM, anche conosciuta come \emph{Fused Filament Fabrication} (FFF), co
     \end{center}
 \vspace{-40pt}
 \end{wrapfigure}
-La stereolitografia è stata la prima tecnica di manifattura additiva ad essere brevettata, nel 1984 da \emph{Chuck Hull} \parencite{Reference124}. Questa tecnologia utilizza un raggio laser per polimerizzare in maniera localizzata la resina contenuta sul livello di stampa, strato dopo strato. Questo tipo di stampa è molto precisa e permette di stampare vari tipi di resine con differenti proprietà. In campo dentale sono presenti resine calcinabili, resine per protesi, per provvisori, per guide chirurgiche ed altre ancora. 
+Stereolithography was the first additive manufacturing technique to be patented in 1984 by \emph{Chuck Hull} \parencite{Reference124}. This technology uses a laser beam to locally polymerise the resin contained on the print layer, layer by layer. This type of printing is very precise and allows you to print various types of resins with different properties. In the dental field there are calcinable resins, resins for prostheses, for provisionals, for surgical guides and others.
 
 \subsection{Digital Light Processing (DLP)}
 \begin{wrapfigure} {R} {0.37\textwidth}
@@ -47,7 +45,7 @@ La stereolitografia è stata la prima tecnica di manifattura additiva ad essere 
     \end{center}
 \vspace{-20pt}
 \end{wrapfigure}
-La stampa DLP utilizza anch'essa la polimerizzazione della resina strato dopo strato, ma al posto di un Laser come la SLA, utilizza dei \emph{Digital Micromirror Device} (DMD, la stessa tecnologia dei proiettori) per creare una maschera di polimerizzazione che polimerizza tutto il layer in una volta. Questa tecnica è molto veloce nella produzione degli oggetti. La risoluzione di stampa dipende dalla risoluzione del fascio di luce proiettata, ma in generale è molto vicina a quella della SLA. Una evoluzione recente della stampa DLP è la stampa CLIP \parencite{Reference121}, \parencite{Reference122}, che permette la produzione molto rapida di strutture ad alta risoluzione. La tecnologia CLIP è stata ideata dall'azienda Carbon Inc.\parencite{Reference123}.
+DLP printing also uses resin polymerization layer by layer, but instead of a laser such as SLA, it uses \emph{Digital Micromirror Device} (DMD, the same technology as projectors) to create a polymerization mask that it polymerizes the entire layer at once. This technique is very fast in producing objects. The print resolution depends on the resolution of the projected light beam, but in general it is very close to that of SLA. A recent evolution of DLP printing is the CLIP \parencite{Reference121}, \parencite{Reference122}, which allows very fast production of high-resolution structures. The CLIP technology was developed by the company Carbon Inc. \parencite{Reference123}.
 
 \subsection{Selective Laser Sintering (SLS)}
 \begin{wrapfigure} {R} {0.40\textwidth}
@@ -59,8 +57,8 @@ La stampa DLP utilizza anch'essa la polimerizzazione della resina strato dopo st
     \end{center}
 \vspace{-40pt}
 \end{wrapfigure}
-Le stampanti SLS utilizzano un laser per sinterizzare particelle di polimeri, metalli e ceramiche. La risoluzione è nell'ordine di qualche decina di micrometri. Questa tecnologia trova varie implicazioni in campo odontoiatrico, perché permette sia di stampare polimeri, quindi guide chirurgiche e modelli, sia di stampare ceramiche e metalli, con immediate possibilità di utilizzo in campo protesico, implantologico e chirurgico.
-
+SLS printers use a laser to sinter particles of polymers, metals and ceramics. The resolution is in the order of a few tens of micrometers. This technology finds various implications in the dental field, because it allows both to print polymers, then surgical guides and models, and to print ceramics and metals, with immediate possibilities of use in the prosthetic, implantological and surgical fields.
+\newpage
 \subsection{Material jetting (InkJet - PolyJet)}
 \begin{wrapfigure} {R} {0.5\textwidth}
 \vspace{-20pt}
@@ -71,76 +69,76 @@ Le stampanti SLS utilizzano un laser per sinterizzare particelle di polimeri, me
     \end{center}
 \vspace{-20pt}
 \end{wrapfigure}
-La stampa Material-jet  utilizza una testina che si muove sul piano di stampa depositando il materiale, che viene poi fotopolimerizzato da una luce UV, in un processo molto simile alla stampa 2D.\\
-Sono presenti molti materiali di stampa che possono essere stampati in contemporanea; questo rende possibile la stampa di oggetti con caratteristiche meccaniche non uniformi, dove ad esempio ci sono sia aree rigide che aree elastiche. In oltre la stampa di più materiali allo stesso tempo permette di stampare oggetti con una grande varietà di colori. La stampa è inoltre molto precisa, perché lo strato di materiale depositato ad ogni passaggio è molto sottile (nell'ordine dei \SI {20}{\micro\metre}).
+The Material-jet print uses a printing head that moves on the printing surface depositing the material, which is then light-cured by a UV light, in a process very similar to 2D printing.
+There are many print materials that can be printed simultaneously; this makes it possible to print objects with non-uniform mechanical characteristics, where for example there are both rigid and elastic areas. In addition to printing multiple materials at the same time allows you to print objects with a wide variety of colors. Printing is also very precise, because the layer of material deposited at each passage is very thin (in the order of \SI{20}{\micro\metre}).
 
-\section{Avvio della Stampa}
-Viene qui trattato il processo di stampa Fused Deposition Modeling su una stampante cartesiana.\\
-Dopo aver ottenuto il file in G-code dal software di slicing, questo file può essere inviato alla stampante per eseguire la stampa. In base alle capacità offerte dalla scheda di controllo elettronico della stampante, il G-code può essere sottoposto alla stampante in vari modi.
+\section{Starting the Print}
+The Fused Deposition Modeling print process on a Cartesian printer is discussed here. \\
+After obtaining the file in G-code from the slicing software, this file can be sent to the printer for printing. Depending on the capabilities offered by the printer's electronic control board, the G-code can be submitted to the printer in various ways.
 
 
-\subsection{Stampa tramite USB} 
-Consiste nel collegare la scheda madre della stampante al PC tramite un cavo USB.
-Ha il vantaggio di essere un metodo veloce e che consente il controllo della stampante dall'interfaccia grafica del software installato sul PC \parencite{Reference2}.\\
-Un grosso svantaggio è dato dal fatto che il PC deve necessariamente essere acceso per tutto il processo di stampa, e che eventuali crash del sistema possano interrompere la stampa improvvisamente e con poche possibilità di recupero.
+\subsection{Printing via USB}
+It consists of connecting the printer motherboard to the PC via a USB cable.
+It has the advantage of being a fast method and allows the control of the printer from the graphic interface of the software installed on the PC \parencite{Reference2}. \\
+A big disadvantage is the fact that the PC must necessarily be turned on throughout the printing process, and that any system crashes can stop printing suddenly and with little chance of recovery.
 
-\subsection{Stampa tramite SD Card}
-La gran parte delle schede madri per stampanti 3d attualmente in commercio permettono di inserire una scheda microSD, da cui è possibile stampare i file G-code preventivamente caricati sulla scheda.\\
-La stampa da SD è molto vantaggiosa, perché non richiede l'uso di un PC durante la stampa.
-Molte schede madri permettono anche di caricare il file G-code sulla microSD senza estrarla dalla stampante, semplicemente collegando la scheda madre al PC via USB per eseguire il trasferimento del G-code sulla microSD.\\
-La stampa da scheda di memoria permette quindi di avere una stampante 3d autonoma, il che riduce i rischi di fallimento del processo di stampa dovuti a problemi che possono presentarsi al PC durante quella fase.
+\subsection{Printing via SD Card}
+Most of the motherboards for 3D printers currently on the market allow you to insert a microSD card, from which you can print the G-code files previously loaded on the card. \\
+Printing from SD is very advantageous because it does not require the use of a PC during printing.
+Many motherboards also allow you to load the G-code file on the microSD without removing it from the printer, simply by connecting the motherboard to the PC via USB to perform the transfer of the G-code on the microSD.
+Printing from a memory card thus makes it possible to have a stand-alone 3D printer, which reduces the risk of printing failure due to problems that may occur to the PC during that phase.
 
-\subsection{Stampa tramite interfaccia Web}
-Schede madri più avanzate, come la open-source \emph{Duet3D} \parencite{Reference3}, sono dotate della possibilità di connettersi ad internet e permettono il controllo della stampante attraverso il browser. Questo tipo di controllo aumenta estremamente la flessibilità della stampante, che può essere monitorata anche mentre ci si trova distanti dal luogo di stampa.\\
-L'interfaccia web permette di controllare da remoto anche più di una stampante, a patto che queste siano equipaggiate con delle schede con connettività web. Questo risulta estremamente utile quando più stampanti devono essere gestite e monitorate contemporaneamente, come può accadere in ambito educativo o in ambito industriale. Il monitoraggio da remoto può essere anche effettuato collegando una videocamera a questa scheda, il che permette il monitoraggio video in tempo reale, il salvataggio dei filmati per successive analisi o per la successiva proiezione a scopo educativo.
+\subsection{Printing via web interface}
+More advanced motherboards, such as open-source \emph{Duet3D} \parencite{Reference3}, have the ability to connect to the Internet and allow printer control through the browser. This type of control greatly increases the flexibility of the printer, which can also be monitored while you are away from the printing place.
+The web interface allows you to remotely control even more than one printer, provided that these are equipped with cards with web connectivity. This is extremely useful when multiple printers must be managed and monitored at the same time, as can happen in the educational field or in the industrial sector. Remote monitoring can also be performed by connecting a video camera to this card, which allows real-time video monitoring, saving the videos for later analysis or for the next projection for educational purposes.
 
-\section{Calibrazione}
-Il processo di calibrazione varia in base al modello di stampante. Le stampanti più avanzate eseguono la calibrazione in maniera automatizzata, e richiedono solo poche verifiche da parte dell'operatore. Stampanti più economiche o fai-da-te possono invece prevedere diversi passaggi in cui è richiesto l'intervento dell'operatore.\\
-La calibrazione va effettuata sicuramente prima del primo utilizzo, in modo da avere una stampante affidabile, precisa e con performance costanti. Il processo \parencite{Reference4} consiste nel calibrare:
+\section{Calibration}
+The calibration process varies depending on the printer model. The most advanced printers perform the calibration in an automated way, and require only a few checks by the operator. Cheaper or do-it-yourself printers can instead provide several steps where operator intervention is required. \\
+The calibration must certainly be done before the first use, in order to have a reliable, precise and constant performance printer. The \parencite{Reference4} process consists of calibrating:
 
 \begin{itemize}
-\item Step per mm sugli assi X, Y, Z ed E (estrusore)
-\item Livello del letto di stampa
+\item Step by mm on the X, Y, Z and E axes (extruder)
+\item Print bed level
 \end{itemize}
 
-\subsection{Step per millimetro}
-Per calibrare gli step per mm sugli assi bisogna conoscere alcuni parametri delle componenti della stampante:
+\subsection{Step by millimeter}
+To calibrate the steps for mm on the axes, you need to know some parameters of the printer components:
 
 \begin{itemize}
-\item	\emph{\textbf{Angolo per step}}: è la rotazione che compie l'asse per ogni step, misurata in gradi. Generalmente corrispondenti a 1.8/step (pari a 200 step/rivoluzione) o 0.9/step (pari a 400 step/rivoluzione)
-\item	\emph{\textbf{Microstep}}:  dipende dalla capacità di interpolazione dei driver che controllano gli stepper motor nella scheda madre. \parencite{Reference5}, \parencite{Reference6}. Il microstep consiste nel mandare impulsi di bassa potenza al motore, per fargli compiere frazioni di step. Questo in linea teorica aumenta la risoluzione di stampa, ma all'aumentare dell'interpolazione diminuisce il torque, quindi il motore potrebbe non avere abbastanza energia per compiere il movimento. Ciò significa che non sarà eseguita la frazione di rotazione fino a quando non si accumulerà il numero di impulsi necessario a dare un torque sufficiente al moto.
-\item	Per assi con trasmissione a cinghia e pulegge (generalmente X e Y):
+\item \emph{\textbf{Angle per step}}: is the rotation that makes the axis for each step, measured in degrees. Generally corresponding to 1.8 / step (equal to 200 step / revolution) or 0.9 / step (equal to 400 step / revolution)
+\item \emph{\textbf{Microstep}}: it depends on the interpolation capacity of the drivers that control the stepper motor on the motherboard. \parencite{Reference5}, \parencite{Reference6}. The microstep consists in sending low power pulses to the motor, to make it perform fractions of steps. This theoretically increases the print resolution, but as the interpolation increases, the torque decreases, so the motor may not have enough energy to perform the movement. This means that the fraction of rotation will not be performed until the number of pulses necessary to give sufficient torque to the motion is accumulated.
+\item For axes with belt drive and pulleys (generally X and Y):
 
 \begin{itemize}
-\item	Passo della cinghia in mm
-\item	Numero di denti della puleggia
-\item	steps/mm =  (step/riv * microstep) / ( passo dell cinghia in mm * numero di denti della puleggia)
+\item Belt pitch in mm
+\item Number of teeth of the pulley
+\item steps / mm = (step / rev * microstep) / (belt pitch in mm * number of teeth of the pulley)
 \end{itemize}
 
-\item	Per assi con trasmissione a vite (generalmente Z) \parencite{Reference51}:
+\item For axes with screw transmission (generally Z) \parencite{Reference51}:
 
 \begin{itemize}
-\item	Passo della vite in mm
-\item	steps/mm =  (step/riv * microstep) / passo della vite
+\item Screw pitch in mm
+\item steps / mm = (step / rev * microstep) / screw pitch
 \end{itemize}
 
-\item	Per l'estrusore:
+\item For the extruder:
 
-\begin{itemize}
-\item 	step/mm = (step/riv * microstep) *  / (diametro del'ingranaggio di estrusione * pi)
-\item 	Con riduzione (\emph{wade extruder}): step/mm = (step/riv * microstep) * (n denti puleggia grande / n denti puleggia piccola) / (diametro del'ingranaggio di estrusione * pi)
+\begin {itemize}
+\item step / mm = (step / rev * microstep) * / (diameter of the extrusion gear * pi)
+\item With reduction (\emph{wade extruder}): step / mm = (step / rev * microstep) * (n large pulley teeth / small pulley teeth) / (extrusion gear diameter * pi)
 \end{itemize}
 
 \end{itemize}
 	
 
-\subsection{Livellamento del Letto di Stampa}
-Regolare il piano di stampa affiche sia il più orizzontale possibile serve ad avere una superficie ottimale su cui depositare il materiale di stampa. Il piano deve essere ortogonale all'azze Z e parallelo agli assi X e Y. Questa disposizione permette di avere una deposizione ottimale del primo strato, che è fondamentale per garantire la corretta geometria dell'oggetto stampato, oltre a favorirne l'adesione al letto.\\
-Il piano può essere regolato manualmente, regolandone l'altezza attraverso delle viti, oppure  in maniera automatizzata. Il livellamento automatizzato (\emph{Auto Bed Leveling}) viene eseguito con l'ausilio di uno o più sensori che permettono di definire la posizione nello spazio del lettino. L'eventuale inclinazione del lettino viene poi compensata dal moto dell'estrusore sull'asse Z \parencite{Reference7}, \parencite{Reference8}. Il livellamento del letto va eseguito con estrusore e piano di stampa alla temperatura di lavoro per tenere conto della deformazione delle componenti ad alte temperature.  \\
-L'auto bed leveling si esegue con il comando G29. Alla fine del sondaggio del letto, la macchina riporta una matrice con i dati relativi all'operazione appena svolta. Questi dati possono essere usati per avere una maggiore comprensione dell'inclinazione del letto, e possono aiutarci nel regolare il letto e nello scegliere l'area migliore per stampare un modello.\\
-I dati possono essere plottati grazie a script su siti web \parencite{Reference9}. Anche la scheda Duet3D permette la visualizzazione della \emph{heatmap} del piano di stampa direttamente dall'interfaccia web \parencite{Reference10}.
+\subsection{Leveling of the Press Bed}
+Adjusting the printing plane should be as horizontal as possible to have an optimal surface on which to deposit the printing material. The plane must be orthogonal to the Z-beam and parallel to the X and Y axes. This arrangement allows to have an optimal deposition of the first layer, which is fundamental to guarantee the correct geometry of the printed object, as well as favoring its adhesion to the bed . \\
+The top can be adjusted manually, adjusting the height through screws, or in an automated manner. Automated leveling (\emph{Auto Bed Leveling}) is performed with the aid of one or more sensors that allow you to define the position in the space of the couch. Any inclination of the table is then compensated by the motion of the extruder on the axis Z \parencite{Reference7}, \parencite{Reference8}. The leveling of the bed must be carried out with the extruder and printing plate at the working temperature to take into account the deformation of the components at high temperatures. \\
+The auto bed leveling is performed with the G29 command. At the end of the bed survey, the machine reports a matrix with the data relating to the operation just carried out. This data can be used to get a better understanding of the bed's inclination, and can help us adjust the bed and choose the best area to print a model.
+Data can be plotted thanks to scripts on websites \parencite{Reference9}. The Duet3D card also allows the display of the print plan \emph{heatmap} directly from the web \parencite{Reference10} interface.
 
-\section {Stampa}
-Alla fine delle procedure di riscaldamento e livellamento della stampante inizia la stampa. L'uso del brim è consigliato per effettuare il priming dell'estrusore ed una maggiore adesione dell'oggetto.\\
-Per ottenere una regolazione fine della stampa del primo layer, è presente in alcuni firmware (Marlin, RepRap firmware) l'opzione \emph{BabyStep}(in Marlin \emph{Babystepping}) che da la possibilità, durante la stampa, di inviare movimenti agli assi per regolarne la posizione. Il Babystep è molto utile nella stampa del primo layer, perché ci da la possibilità di regolare con precisione la posizione dell'ugello rispetto al piano di stampa, facilitando la creazione di un primo layer uniforme e ben spalmato sul piano.
-Effettuata l'eventuale regolazione con Babystep, la stampa prosegue fino a compimento.
+\section{Print}
+At the end of the printer's heating and leveling procedures, printing begins. The use of brim is recommended for priming the extruder and increasing the adhesion of the object.
+To obtain a fine adjustment of the printing of the first layer, there is some firmware (Marlin, RepRap firmware) the \emph{BabyStep} option (in Marlin \emph{Babystepping}) that gives the possibility, during printing, to send axis movements to adjust its position. The Babystep is very useful in the printing of the first layer, because it gives us the possibility to precisely adjust the position of the nozzle with respect to the printing plane, facilitating the creation of a first layer uniform and well spread on the plane.
+After any adjustment with Babystep has been carried out, printing continues until finished.

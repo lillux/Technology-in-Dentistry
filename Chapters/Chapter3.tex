@@ -19,176 +19,180 @@ Proprietary software is certainly efficient, easy to use and often has good perf
 For these reasons, several open-source software have been developed, which allow researchers to use the general functions of medical image processing, such as DICOM file management and image visualization, and integrate functions for advanced images analysis and processing. \\
 These software cover a large part of the workflow we are going to analyze, and they provide other functionality that can be very useful when is required to perform advanced operations or create functions tailored to specific use cases.
 
-\section{Il modello digitale}
-Un modello tridimensionale è una collezione di punti, connessi a formare linee, curve, poligoni e volumi. I modelli possono essere creati con appositi software di modellazione, oppure acquisiti dal mondo reale per mezzo di dispositivi di scansione.\\
-L'atto di creare un modello, la modellazione, si differenzia in \emph{modellazione organica}  e \emph{modellazione geometrica}.
-\begin{wrapfigure} {R}{0.35\textwidth}
-	%\centering
-	\includegraphics[width=0.35\textwidth, height=\textheight,keepaspectratio]{hr_cube_orga}
-    \caption{cubo realizzato con modellazione organica; un alto numero di mesh ne aumenta la risoluzione ma ne complica la modifica.}
-    \label{fig:hr_cube_orga}
+\section{The digital model}
+A three-dimensional model is a collection of points, connected to form lines, curves, polygons and volumes. Models can be created with appropriate modeling software, or acquired from the real world by means of scanning devices. \\
+The act of creating a model, modeling, differs in \emph{organic modeling} and \emph{geometrical modeling}.
+\begin{wrapfigure}{R}{0.35\textwidth}
+% \ Centering
+\includegraphics[width=0.35\textwidth, height=\textheight, keepaspectratio]{hr_cube_orga}
+    \caption{cube made with organic modeling; a high number of mesh increases the resolution but complicates the change.}
+    \label{fig: hr_cube_orga}
 \end{wrapfigure}
-\paragraph{La modellazione organica} è utilizzata per realizzare geometrie naturali con forme arrotondate o irregolari, come animali, piante, pietre, esseri umani ed organi. Il modello è costituito da una superficie formata da facce poligonali, generalmente triangoli, definita \emph{mesh}. La densità dei poligoni sulla superficie rende conto della risoluzione nella rappresentazione dei dettagli. La gran parte dei modelli utilizzati in ambito medico appartengono a questa categoria, in particolar modo i modelli di parti dell'or\-ga\-ni\-smo umano.\\
-Il formato più utilizzato per salvare i modelli organici è lo \textbf{.STL} (\emph{Stereolithography}, Standard Tasselation Language), che è una collezione di superfici triangolari definite dalla posizione dei vertici nello spazio e dalle normali alla superficie. Il linguaggio è stato sviluppato dalla 3d Systems per l'uso specifico con macchine per la stereolitografia, ma è ormai il linguaggio standard per modelli da utilizzare con la stampa 3D.Un consorzio di aziende operanti nel settore della modellazione tridimensionale e nella manifattura additiva è attualmente al lavoro per la creazione di un nuovo formato standard, il \textbf{.3MF} (\emph{3D Manufacturing Format}) \parencite{Reference143}.
-\begin{wrapfigure} {R} {0.35\textwidth}
-	%\centering
-	\includegraphics[width=0.35\textwidth, height=\textheight,keepaspectratio]{cube_geom}
-    \caption{cubo realizzato con modellazione geometrica; il più basso numero di facce è utilizzato per descrivere il cubo.}
-    \label{fig:cube_geom}
+\paragraph{Organic modeling} is used to create natural geometries with rounded or irregular shapes, such as animals, plants, stones, humans and organs. The model consists of a surface formed by polygonal faces, generally triangles, called \emph{mesh}. The density of polygons on the surface accounts for the resolution in the representation of details. Most of the models used in the medical field belong to this category, especially the models of parts of the human body. \\
+The most common format for store organic models is the \textbf{.STL} (\emph{Stereolithography}, Standard Tasselation Language), which is a collection of triangular surfaces defined by the position of vertices in space and from the normals to surfaces. The language was developed by 3d Systems for specific use with stereolithography machines, but it is now the standard language for models to be used with 3D printing. A consortium of companies operating in the field of three-dimensional modeling and in additive manufacturing is currently at work for the creation of a new standard format, the \textbf{.3MF} (\emph{3D Manufacturing Format}) \parencite{Reference143}.
+\begin{wrapfigure}{R}{0.35\textwidth}
+% \ Centering
+\includegraphics[width=0.35\textwidth, height=\textheight, keepaspectratio]{cube_geom}
+    \caption {cube made with geometric modeling; the lowest number of faces is used to describe the cube.}
+    \label {fig: cube_geom}
 \end{wrapfigure}
-\paragraph{La modellazione geometrica} è realizzata per il design di parti generalmente artificiali, dove il numero di facce del modello va ottimizzato per semplificarne progettazione, produzione ed assicurare la futura adattabilità del design. Il tipo di modellazione geometrica più diffuso è la \emph{modellazione parametrica}, adottata dai maggiori software CAD. La modellazione parametrica si basa sull'uso di primitive geometriche (linee, poligoni) le cui dimensioni sono definite ed in correlazione. La modellazione parametrica è indicata per il design di prodotti ingegneristici, protesi e guide chirurgiche. Il formato di output del modello molto spesso è dipendente dal software utilizzato, ma la maggioranza dei software di disegno parametrico permettono di esportare i modelli in .STL per le procedure di stampa 3d.
+\paragraph{Geometrical modeling} is used for the design artificial parts, where the number of faces of the model must be optimized to simplify the design, production and ensure the future adaptability of the design. The most widespread type of geometrical modeling is the \emph{parametric modeling}, adopted by major CAD software. Parametric modeling is based on the use of \emph{geometric primitives} (lines, polygons) whose dimensions are defined and correlated. Parametric modeling is indicated for the design of engineering products, prosthesis and surgical guides. The output format of the model is dependent on the software used, but most parametric design software allows to export the models in .stl for the 3D printing procedures. The exported .stl model should be assessed for eventual conversion errors.
 
-\section{3D Slicer}	
-3D Slicer è un software open source per la gestione e la visualizzazione di immagini diagnostiche, realizzato da sviluppatori e ricercatori in ambito medico in un progetto supportato dal \emph{National Institute of Health} (NIH), con la collaborazione di aziende quali la \emph{Kitware Inc.} e la \emph{General Electric}, ed una community in espansione di sviluppatori volontari \parencite{Reference28}.\\
-3D Slicer permette di gestire file DICOM da server \textbf{PACS} (\emph{Picture Archiving and Communication System}) e da archivi non specifici, e permette di visualizzare ed elaborare immagini in 2D, 3D e 4D (X, Y, Z e T, \emph{tempo}; ad esempio le rilevazioni con sonde ad ultrasuoni). Il software offre la capacità effettuare rendering delle immagini e di realizzare modelli per l'uso in software CAD \parencite{Reference31}.
+\section{3D Slicer}
+3D Slicer is an open source software for the management and visualization of diagnostic images, made by developers and researchers in the medical field in a project supported by the \emph{National Institute of Health} (NIH), with the collaboration of companies such as \emph{Kitware Inc.} and \emph{General Electric}, and an expanding community of volunteer developers \parencite{Reference28}. \\
+3D Slicer allows to manage DICOM files from \textbf{PACS} server (\emph{Picture Archiving and Communication System}) and non-specific archives, and allows to view and process images in 2D, 3D and 4D (X, Y, Z and T, \emph{time}, for example detection with ultrasound probes). The software offers the ability to render images and to create templates for use with CAD software \parencite{Reference31}.\\
 
-
-Dal punto di vista software, Slicer ha una struttura modulare, con i moduli base (\emph{Core modules}) che forniscono le funzioni generiche di compatibilità DICOM (\emph{DICOM}) , renderizzazione (\emph{Volume rendering}) e le funzioni di trasformazione delle immagini nello spazio (\emph{Transforms}). Alcuni degli altri moduli rilevanti sono:
+From a software point of view, Slicer has a modular structure, with basic modules (\emph{Core modules}) that provide generic DICOM file management (\emph{DICOM}), rendering (\emph{Volume Rendering}) and the functions of image transformation in 3D space (\emph{Transforms}). Some of the other relevant modules are:
 \begin{itemize}
-\item \emph{\textbf{Filtering}}: contiene strumenti per la preparazione dell'immagine alle successive elaborazioni (\emph{preprocessing}). Le funzionalità più  usate comprendono operazioni aritmetiche, riduzione del rumore e correzione della distribuzione della densità della scansione, anche se ci sono decine di altri algoritmi che possono essere utilizzati.
-\item \emph{\textbf{Registration}}: fornisce la possibilità di allineare tra loro due scansioni, utile quando devono allineare 	scanzioni diverse dello stesso paziente, oppure orientare delle scansioni per standardizzare il i dati.
-\item \emph{\textbf{Segmentation}}: la segmentazione è la separazione dell'immagine in regioni più piccole in base a delle 	caratteristiche. 3D Slicer integra metodi di segmentazione sia interattiva (con input da parte 	dell'operatore) che automatica.
-\item \emph{\textbf{Surface models}}: permette la creazione e la gestione di volumi di superficie da esportare per la successiva 	elaborazione in altri software
-\item \emph{\textbf{Image guided Therapy}}: da la possibilità di scambiare dati in tempo reale con periferiche tra cui dispositivi 	robotici, scanner e apparati di radioterapia.
-Questa funzione permette di utilizzare delle periferiche in combinazione alle immagini diagnostiche, e potrebbe essere interessante per essere usata come \emph{guida virtuale all'inserimento degli impianti} \parencite{Reference118}.
+\item \emph{\textbf{Filtering}}: contains tools for preparing the image for subsequent processing (\emph{preprocessing}). The most used features include arithmetic operations, noise reduction and correction of the density distribution of the scan, even if there are dozens of other algorithms that can be used.
+\item \emph{\textbf{Registration}}: provides the ability to align two scans with each other, useful when aligning different scans of the same patient, or orienting scans to standardize a dataset.
+\item \emph{\textbf{Segmentation}}: segmentation is the separation of the image into smaller regions based on the characteristics. 3D Slicer integrates both interactive (with operator input) and automatic segmentation methods.
+\item \emph{\textbf{Surface models}}: allows the creation and management of surface volumes to be exported for further processing in other software
+\item \emph{\textbf{Image guided Therapy}}: gives the possibility to exchange data in real time with peripherals including robotic devices, scanners and radiotherapy devices.
+This feature allows peripheral devices to be used in conjunction with diagnostic images, and may be of interest for use as \emph{virtual guide to implant placement} \parencite{Reference118}.
 \end{itemize}
-Altri moduli sono presenti, e la collezione è ampliata frequentemente con moduli realizzati dalla community o da istituzioni e aziende. Inoltre ogni utente può creare un modulo e distribuirlo come sorgente o come file binario (un file eseguibile); questa strada può usata per i pacchetti che contengono codice proprietario non libero, ma i cui autori vogliono comunque distribuire la funzionalità agli utenti \parencite{Reference28}.\\
-Il software è accompagnato da delle pubblicazioni ed una documentazione che descrive le funzionalità implementate \parencite{Reference28}, \parencite{Reference29}, \parencite{Reference30}. La documentazione è il miglior riferimento per gli utenti che intendono utilizzare il software e va consultata per comprendere appieno le operazioni che ogni modulo svolge. È disponibile anche un forum su cui è possibile comunicare con utenti e sviluppatori di 3d Slicer \parencite{Reference35}.
 
+Other modules are present, and the collection is frequently expanded with modules created by the community, institutions and companies. Furthermore, each user can create a module and distribute it as a source or as a binary file (an executable file); this path can be used for packages that contain non-free proprietary code, but whose authors still want to distribute the functionality to the community \parencite{Reference28}. \\
+The software is accompanied by publications and a documentation describing the implemented functionality \parencite{Reference28}, \parencite{Reference29}, \parencite{Reference30}. The documentation is the best reference for users who want to use the software and should be consulted to fully understand the operations that each module performs. There is also a forum on which is possible to communicate with 3d Slicer users and developers \parencite{Reference35}.
 
-\section{Blender} 
-Blender \parencite{Reference32} è un software libero ed open-source per la computer grafica, mantenuto dalla \emph{Blender Foundation} e da una community di sviluppatori volontari. Fornisce funzionalità di base di creazione e gestione delle mesh, e funzionalità avanzate come animazioni, renderizzazioni e simulazione di effetti fisici.\\
-Blender è un software che copre moltissimi aspetti della computer grafica. A guidarne l'apprendimento troviamo un'ampia documentazione delle funzionalità \parencite{Reference33}. Fondamentale risulta la community di Blender, che ha contribuito al mantenimento del software nel corso della sua evoluzione assieme alla Blender Foundation. La community è il posto dove si possono scambiare idee con esperti ed utenti del software, dove si trovano tutorial ed esempi di workflow per tutte le funzionalità di Blender \parencite{Reference34}.\\
-Blender risulta molto utile per l'elaborazione dei modelli realizzati in 3d Slicer. Il software permette di modificare le mesh del modello e di compiere operazioni come la levigatura (\emph{smoothing}), la modificazione della dimensione e della risoluzione della mesh e di usare operazioni booleane tra due modelli (\emph{differenza}, \emph{unione} e \emph{intersezione}). Permette anche di eseguire rendering per creare immagini di alta qualità dei modelli.
+\section{Blender}
+Blender \parencite{Reference32} is free and open-source software for computer graphics, maintained by the \emph{Blender Foundation} and a community of volunteer developers. It provides basic mesh creation and management, and advanced features such as animations, renderings, and physical effects simulations. \\
+Blender is a software that covers many aspects of computer graphics. It is accompanied by an extensive documentation of the features \parencite{Reference33}. The Blender community is important and has contributed to the maintenance of the software during its evolution, together with the Blender Foundation. The community is the place where to exchange ideas with experts and software users, where to find tutorials and workflow examples for all the features of Blender \parencite{Reference34}. \\
+Blender is very useful for the elaboration of the models realized in 3d Slicer. The software allows to modify the meshes of the model and to perform operations such as sanding (\emph{smoothing}), the modification of the size and resolution of the mesh and to use Boolean operations between two models (\emph{difference}, \emph{union} and \emph{intersection}). It also allows rendering to create high-quality images of the models.
 
-\section{MeshLab} 
-MeshLab \parencite{Reference36} è un software libero ed open source che permette la processazione avanzata delle mesh, sviluppato da studenti e ricercatori della \emph{Facoltà di Informatica dell'Università di Pisa}. Il software permette l'import/export di un'ampia quantità di file in cui si possono trovare i modelli e integra strumenti per l'ispezione della mesh e per al sua pulizia, algoritmi di remeshing e di creazione di mesh da nuvole di punti (scansioni ottiche, fotogrammetria...) e la gestione delle texture associate.\\
-Questo software è utile per pulire i modelli, correggere problemi con le mesh, ridurre il numero di mesh e modificare la forma e la distribuzione delle mesh sul modello e comparare tra loro i modelli.
+\section{MeshLab}
+MeshLab \parencite{Reference36} is free and open source software that allows advanced mesh processing, developed by students and researchers of the \emph{Faculty of Computer Science of the University of Pisa}. The software allows the import/export of a large number of format in which the models can be found and integrates tools for the inspection of the mesh and for its cleaning, algorithms for remeshing and creation of meshes from point clouds ( optical scans, photogrammetry ...) and the management of the associated textures. \\
+This software is useful for cleaning models, correcting problems with meshes, reducing the number of meshes and changing the shape and distribution of meshes on the model and comparing the models with each other.
 
-\section{MeshMixer} 
-MeshMixer \parencite{Reference38} non è un software open-source, ma è un software gratuito rilasciato dall'azienda \emph{Autodesk}, che permette la visualizzazione e la processazione delle mesh. MeshMixer è un software con molte funzionalità, in alcuni casi sovrapponibili a quelle di software come Blender e MeshLab, provvisto di una ricca documentazione \parencite{Reference39}. \\
-Questo software fornisce un'interfaccia semplice da usare, ed al contempo ottime funzionalità di manipolazione del modello e di preparazione alla stampa 3d. MeshMixer semplifica il processo di ispezione e riparazione del modello, integrando algoritmi di analisi e processazione della mesh. MeshMixer è uno strumento versatile, che può essere usato in varie parti del flusso di lavoro col modello digitale.\\
-Quando si lavora con modelli semplici MeshMixer può accelerare molto la preparazione alla stampa, con strumenti che permettono di effettuare booleane tra modelli, effettuare fori e riparare aperture della mesh. Il software facilita la selezione di aree del modello da separare o su cui compiere specifiche operazioni.
+\section{MeshMixer}
+MeshMixer \parencite{Reference38} is not an open-source software, but it is a free software released by the company \emph{Autodesk}, which allows the visualization and processing of the meshes. MeshMixer is a software with many features, in some cases in common with software such as Blender and MeshLab, provided with a rich documentation \parencite{Reference39}. \\
+This software provides an easy-to-use interface and at the same time excellent model manipulation and 3d printing preparation capabilities. MeshMixer simplifies the process of inspection and repair of the model, integrating analysis algorithms and processing of the mesh. MeshMixer is a versatile tool that can be used in various step of the digital workflow. \\
+When working with simple models MeshMixer can speed up the preparation for printing, with tools that allow to perform Boolean operations, drill holes and repair defect of mesh. The software facilitates the selection of areas of the model to be separated or in which to perform specific operations.
 
 \section{FreeCAD}
-FreeCAD \parencite{Reference40} è un software libero ed open-source di modellazione parametrica supportato da una community di sviluppatori volontari. Il software permette di gestire la catena di produzione di un oggetto. Integra moduli per eseguire lo schizzo tecnico e realizzare il design 3d per mezzo dello schizzo o grazie alla scrittura di funzioni matematiche. Presenta moduli per l'assemblaggio di più parti e per la simulazioni fisiche, oltre che per varie altre applicazioni come la robotica o il design di barche.\\
-FreeCAD è utile per la realizzazione di modelli precisi, come guide chirurgiche e protesi, ma anche parti realizzate ad hoc per la stampante 3d e per creare oggetti di utilità generale come supporti e contenitori. È un software molto versatile ed è uno strumento da conoscere per chiunque si approcci alla stampa 3D con l'intenzione di creare degli oggetti funzionali e non meramente estetici.\\
-FreeCAD è supportato da una documentazione online aggiornata frequentemente \parencite{Reference41}, ed un ebook utile per comprendere le funzionalità del software, con esempi pratici anche mirati alla preparazione per la stampa 3d \parencite{Reference42}.
+FreeCAD \parencite{Reference40} is free and open-source parametric modeling software supported by a community of volunteer developers. The software allows to manage the production chain of an object. Integrate modules to perform the technical sketch and realize the 3D design from the sketch or by writing mathematical functions. Features modules for multi-part assembly and physical simulation, as well as various other applications such as robotics or boat design. \\
+FreeCAD is useful for the realization of precise models, such as surgical guides and prostheses, but also parts created specifically for the 3D printer and to create objects of general utility such as supports and containers. It is a versatile software and a tool to be known for anyone approaching 3D printing with the intention of creating functional and not merely aesthetic objects.\\
+FreeCAD is supported by a frequently updated online documentation \parencite{Reference41}, and an ebook useful for understanding the functionality of the software, with practical examples also aimed at preparing for 3D printing \parencite{Reference42}.
 
 \section{Inventor}
-Inventor \parencite{Reference43} è un software CAD professionale realizzato da \emph{Autodesk}. È tra i più avanzati software di modellazione paramentrica, ed integra tutte le funzioni di FreeCAD più molte altre. Il software viene fornito da Autodesk con un piano di abbonamento, ma per gli studenti è possibile scaricare una versione di prova della durata di 3 anni, molto utile per avere un approccio col software e testarne le caratteristiche in maniera approfondita.
+Inventor \parencite{Reference43} is a professional CAD software developed by \emph{Autodesk}. It is among the most advanced parametric modeling software, and integrates all the functions of FreeCAD plus many others. The software is provided by Autodesk with a subscription plan, but for the students it is possible to download a 3-year trial version, very useful to have an approach with the software and to test its characteristics in depth. Inventor offers an easy approach to topology optimization via a dedicated module.
 
 \section{nTopology Element}
-nTopology \parencite{Reference139} è un software commerciale di gestione di reticoli(\emph{lattice} e scaffold. È un software a pagamento ma è presente una versione free che permette di avere una panoramica delle funzioni. Il software facilita l'integrazione di modelli 3D e la loro conversione in scaffold. \\ È possibile caricare delle simulazioni fisiche in nTopology, attraverso le quali si possono ottenere degli scaffold che saranno ottimizzati rispetto ai carichi che dovranno sostenere. Utilizzeremo la versione Free di questo software per la generazione di scaffold.
+nTopology \parencite{Reference139} is a commercial software for managing lattices (\emph{lattice} and scaffold. It is a paid software but there is a free version that allows you to have an overview of the functions. The software facilitates the integration of 3D models and their conversion to scaffold.\\ It is possible to load physical simulations into nTopology, through which scaffolds can be obtained that will be optimized with respect to the loads that they will have to sustain. We will use the Free version of this scaffold generation software.
 
 \section{Cura}
-Cura \parencite{Reference44} è un software open-source per la conversione in g-code (slicing) dei modelli, Il software è distribuito da Ultimaker, un produttore di stampanti 3d FDM, e supportato da una community di sviluppatori volontari. Cura è affiancato da una documentazione delle funzionalità \parencite{Reference45} e da approfonditi articoli \parencite{Reference52}.\\
-Il software permette di effettuare lo slicing del modello e di regolare le opzioni di stampa. Cura permette la regolazione di molti parametri, tra cui la temperatura di stampa, l'altezza dei layer, la percentuale e la geometria di riempimento. Permette anche la creazione automatica di vari tipi di supporto, e integra la possibilità di lavorare con più di un estrusore nella stessa stampa, per effettuare stampe con più di un materiale.
-Lo slicing è un processo fondamentale nel processo di stampa perché traduce il modello digitale in una serie di istruzioni. Queste vengono fornite alla stampante e risultano in una sequenza di operazioni che la essa compie per dar luogo poi ad un modello fisico, che mira ad essere l'esatta copia del modello digitale.\\
-La documentazione di Cura descrive molto bene i vari parametri di stampa, perciò verranno qui brevemente descritti i parametri principali e ne saranno analizzate le implicazioni pratiche.
+Cura \parencite{Reference44} is an open-source software for converting 3D models to g-code (slicing), the software is distributed by Ultimaker, a manufacturer of FDM 3D printers, and supported by a community of volunteer developers. Cura is supported by a documentation of the features \parencite{Reference45} and in-depth articles \parencite{Reference52}. \\
+The software allows to perform slicing of the model and to adjust the printing options. Cura allows the adjustment of many parameters, including the printing temperature, the layers height, the filling geometry and its percentage. It also allows the automatic creation of various types of supports, and integrates the ability to work with more than one extruder in the same print, to make prints with more than one material.\\
+Slicing is an important process in the printing workflow because it translates the digital model into a series of instructions. These are provided to the printer and result in a sequence of operations that it performs to give rise to a physical model, which aims to be the exact copy of the digital model.\\
+Cura documentation describes the various printing parameters very well, so the main parameters will be briefly described here and the practical implications will be analyzed.
 
 \subsection{Quality}
-Il menù \emph{\textbf{Quality}} contiene parametri per regolare l'altezza del layer e l'ampiezza della linea di materiale estruso. Ridurre il valore di queste voci da luogo ad un aumento di qualità, perché potranno essere ricostruiti dettagli più piccoli. La scelta di questi parametri non è però arbitraria, ma si basa su delle caratteristiche della stampante.\\
-L'altezza del layer (\emph{layer height}) dipende dalla risoluzione del movimento dell'estrusore sull'asse Z, che a sua volta dipende dagli step/mm, in base a meccanica di movimento e interpolazione degli step (microstep). Ad esempio, una trasmissione a vite con passo 8mm, stepper da 1,8/step e microstep 16x, fa al massimo step da 0,04 mm sull'asse Z, il che si traduce in una risoluzione massima di 0,04mm sull'asse Z, con altezza del layer che va impostata in multipli di 0,04. Diminuire l'altezza del layer permette di riprodurre particolari più piccoli e di avere una finitura di superficie con un aspetto più levigato, ma aumenta anche il tempo di stampa, perché serviranno più layer per riprodurre il modello.
-Impostare l'altezza del primo layer (\emph{Initial layer height}) con un valore più alto rispetto ai successivi da in genere una migliore adesione dell'oggetto al letto di stampa, perché un flusso di materiale più abbondante al primo strato aiuta a compensare un piano di stampa non perfettamente orizzontale.\\
-L'ampiezza del layer (\emph{layer width}) dipende dal diametro dell'ugello (\emph{nozzle}) utilizzato, con ugelli più piccoli che aumentano la rappresentazione dei dettagli, ed ugelli grandi che riducono i tempi di stampa; questi si trovano attualmente in diametri che vanno dagli 0,15 mm ad oltre 1 mm. L'ampiezza va impostata su un valore vicino a quello dell'ugello, mantenendo un range di libertà per ottimizzare il risultato di stampa. Impostare un valore poco più basso del diametro effettivo può aumentare la qualità di stampa, ma va valutato di volta in volta; inoltre una ampiezza minore aumenta il tempo di stampa, perché più linee verranno usate per costituire il modello. Il valore può essere aumentato per compensare una eventuale usura dell'ugello, ma è un rimedio temporaneo ed è preferibile sostituire l'ugello usurato con uno nuovo.\\
+The \emph{\textbf{Quality}} menu contains parameters for adjusting the layer height and the width of the extruded line. Reducing the value of these items results in an increase in quality, because smaller details can be reconstructed. The choice of these parameters is not arbitrary, but is based on the characteristics of the printer.
+The height of the layer (\emph{layer height}) depends on the resolution of the extruder movement on the Z axis, which in turn depends on the steps/mm, based on movement mechanics and step interpolation (microstep). For example, a screw transmission with 8mm pitch, 1.8/step stepper and 16x microstep, does a maximum 0.04mm step on the Z axis, which translates into a maximum resolution of 0.04mm on the Z axis, with the height of the layer to be set in multiples of 0.04. Decreasing the height of the layer allows you to reproduce smaller details and have a surface finish with a smoother appearance, but also increases the printing time, because you will need more layers to reproduce the model.\\
+Setting the height of the first layer (\emph{Initial layer height}) with a higher value than the following layers generally gives a better adhesion of the object to the print bed, because a more abundant flow of material in the first layer helps to compensate for a print plane that is not perfectly horizontal. \\
+The width of the layer (\emph{layer width}) depends on the diameter of the nozzle (\emph{nozzle}) used, with smaller nozzles that increase the representation of details, and large nozzles that reduce printing times; these are currently found in diameters ranging from 0.15 mm to over 1 mm. The amplitude should be set to a value close to that of the nozzle diameters, maintaining a range of freedom to optimize the print result. Setting a value slightly lower than the actual diameter can increase the print quality, but must be evaluated from time to time; moreover, a smaller width increases the printing time, because more lines will be used to make up the model. The value can be increased to compensate for any nozzle wear, but it is a temporary remedy and it is preferable to replace the worn nozzle with a new one.
 
 \subsection{Shell}
-Il menù \emph{\textbf{Shell}} permette di regolare i parametri delle pareti del modello (shell: guscio). Possiamo regolare in maniera indipendente lo spessore della superfici, del tetto e del pavimento del modello. Uno spessore maggiore darà una maggiore resistenza al modello ed una maggiore resistenza al passaggio dei fluidi (\emph{leaking}) che posso essere fatti passare al suo interno. Sono presenti anche vari parametri riguardo alla compensazione dell'espansione o della retrazione del materiale di stampa e per regolare in maniera fine la stampa della superficie del modello.
+The \emph{\textbf{Shell}} menu allows you to adjust the parameters of the model walls (shell: shell). We can independently adjust the thickness of the model surfaces, roof and floor. A greater thickness will give a greater resistance to the model and a greater resistance to the passage of fluids (\emph{leaking}) that can be passed inside. There are also various parameters regarding compensation for the expansion or retraction of the print material and for fine-tuning the printing of the model surface.
 
 \subsection{Infill}
-L'\emph{\textbf{infill}} è il riempimento del modello, quello che si trova all'interno della superficie i cui parametri abbiamo spiegato prima. La quantità di infill può essere impostata in percentuale, con 0\% che indica l'assenza di infill e 100\% che indica il completo riempimento del volume dell'oggetto. Sono disponibili diversi \emph{pattern} di infill, alcuni veloci come \emph{Lines} o \emph{Grid}, altri più lenti ma con migliori capacita di assorbimento delle forze, ad esempio \emph{Cubic subdivision}, mentre altri ancora utili alla stampa di oggetti deformabili, come \emph{Concentric} e \emph{Cross}.\\
-L'infill da resistenza all'oggetto e funge da supporto per gli strati superiori del modello. La quantità di infill va regolata in base alle condizioni meccaniche in cui l'infill dovrà operare. Un modello che subisce sollecitazioni durante l'uso dovrà avere un infill alto e con una geometria adatta, mentre un modello da esposizione può essere realizzato con poco infill, in modo da risparmiare materiale e accelerare la stampa.
-Il menù infill contiene diversi parametri che è possibile regolare, tra questi la possibilità di settare manualmente l'angolazione di alcuni pattern (\emph{Infill Line Direction}). La regolazione manuale dell'angolo delle linee di infill è un metodo veloce in cui si può eseguire il design di semplici scaffold tridimensionali \parencite{Reference138}.
+The \emph{\textbf{infill}} is the filling of the model, the one that is inside the surface whose parameters we have explained before. The quantity of infill can be set in percentage, with 0\% indicating the absence of infill and 100\% indicating the complete filling of the volume of the object. There are several \emph{pattern} of infill, some as fast as \emph{Lines} or \emph{Grid}, others slower but with better absorption of forces, such as \emph{Cubic subdivision}, while still others useful for printing deformable objects, such as \emph{Concentric} and \emph{Cross}. \\
+The infill gives resistance to the object and acts as a support for the upper layers of the model. The quantity of infill must be adjusted according to the mechanical conditions in which the infill has to operate. A model that undergoes stress during use must have a high infill and a suitable geometry, while an aestetich model can be made with little or no infill, in order to save material and speed up printing.\\
+The infill menu contains several parameters that can be adjusted, among them the possibility to manually set the angle of some patterns (\emph{Infill Line Direction}). Manual adjustment of the infill line angle is a quick method in which the design of simple three-dimensional scaffolds can be performed \parencite{Reference138}.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{numbers_grid_infillDens}
-    \caption{\emph{\textbf{Infill pattern}}: \emph{Grid}; da sinistra in alto, progressivo aumento di \emph{\textbf{Infill density}}.}
+    \caption{\emph{\textbf{Infill pattern}}: \emph{Grid}; from left to right, progressive \emph{\textbf{Infill density}}.}
     \label{fig:numbers_grid_infillDens}
 \end{figure}
 	
 
 \subsection{Material}
-Il menù \emph{\textbf{Material}} contiene i parametri per regolare le temperature e il processo di estrusione.
-È possibile da qui regolare la temperatura di stampa (\emph{printing temperature}) e la temperatura del piano di stampa riscaldato (\emph{build plate temperature}); si può settare in maniera indipendente la temperatura del primo layer rispetto a quella dei layer successivi. Una temperatura più alta al primo layer favorisce l'adesione di questo al piano, perché il materiale estruso è meno viscoso e si spalma meglio sulla superficie. Il piano riscaldato facilita anch'esso l'adesione, che è comunque correlata al materiale di cui il piano è fatto.\\
-Il flusso (\emph{flow}) si regola in percentuale e va regolato per evitare eccessi o carenze di materiale estruso durante la stampa. Un metodo di regolazione consiste nell'osservare la superficie dell'oggetto stampato per vedere se sono presenti spazi o eccessi tra i layer, e variare la percentuale di flow fino a che non appare uniforme. Un altro metodo consiste nello stampare un cubo senza tetto, infill 0\% e con le pareti spesse una linea (in \emph{shell}-->\emph{wall line count} = 1), e con un calibro misurare se la parete è effettivamente spessa lo stesso valore impostato in \emph{shell}-->\emph{wall line width}.
-Questo metodo empirico può dare una indicazione sulla discrepanza tra il valore cercato ed il valore reale. La relazione tra lo spessore della parete e il valore del flow non è comunque lineare, perché la quantità di estrusione è influenzata da parametri come velocità di stampa, diametro effettivo del filamento e temperatura di stampa.\\
-Un parametro importante è la retrazione (\emph{retraction}). La retrazione è la distanza di cui il filamento viene tirato indietro dall'estrusore ogni volta che finisce un segmento di stampa; questo movimento serve a ridurre la pressione all'interno dell'ugello ed a limitare la fuoriuscita di materiale fuso durante tragitti in cui non c'è stampa (\emph{oozing}). I valori di distanza di retrazione e velocità di retrazione vanno regolati con appositi test, assieme a temperatura di estrusione e \emph{jerk}.
+The \emph{\textbf{Material}} menu contains parameters for adjusting the temperatures and the extrusion process.
+It is possible to adjust the printing temperature (\emph{printing temperature}) and the temperature of the heated printing plate (\emph{build plate temperature}); you can set the temperature of the first layer independently of that of the subsequent layers. A higher temperature at the first layer favors the adhesion of this to the bed, because the extruded material is less viscous and flows better on the surface. The heated plate also facilitates adhesion, which is however related to the material of which the plan is made.\\
+The flow (\emph{flow}) is regulated as a percentage and must be adjusted to avoid excesses or deficiencies of extruded material during printing. An adjustment method consists of observing the surface of the printed object to see if there are spaces or excesses between the layers, and varying the percentage of flow until it appears uniform. Another method is to print a cube without a roof, infill 0\% and with thick walls line (in \emph{shell} -> \emph{wall line count} = 1), and with a caliper measure whether the wall is actually thick the same value set in \emph{shell} -> \emph{wall line width}.
+This empirical method can give an indication of the discrepancy between the actual width value and the real value. However, the relationship between the wall thickness and the flow value is not linear, because the extrusion quantity is influenced by parameters such as print speed, actual filament diameter and print temperature.\\
+An important parameter is retraction (\emph{retraction}). Retraction is the distance the filament is pulled back from the extruder each time a printed segment ends; this movement serves to reduce the pressure inside the nozzle and to limit the release of molten material during travels (\emph{oozing}). The values of retraction distance and retraction speed must be adjusted with appropriate tests, together with extrusion temperature and \emph{jerk}.
 
 \subsection{Speed}
-\begin{wrapfigure} {R} {0.37\textwidth}
-	%\centering
-	\includegraphics[width=0.37\textwidth, height=\textheight,keepaspectratio]{estrusore_diag}
-    \caption{Estrusore diretto (direct extruder)}
-    \label{fig:estrusore_diag}
+\begin{wrapfigure}{R}{0.4\textwidth}
+\vspace{-20pt}
+\includegraphics[width=0.4\textwidth, height=\textheight, keepaspectratio]{estrusore_diag}
+    \caption{Direct extruder}
+    \label{fig: estrusore_diag}
 \end{wrapfigure}
-Il menù \emph{\textbf{Speed}} permette di impostare la velocità di stampa. Si può regolare la velocità di stampa della shell e dell'infill in maniera separata, la velocità dei movimenti senza stampa e le accelerazioni durante le varie fasi di stampa.
-Il \emph{jerk} è un parametro che gestisce il massimo cambio di velocità istantanea dell'estrusore; un valore basso addolcisce le accelerazioni e decelerazioni mentre un valore alto le rende più brusche. L'effetto del jerk è più evidente lavorando a velocità elevate \parencite{Reference53}.\\
-La velocità di stampa va regolata secondo le possibilità della stampante. Stampe veloci sono generalmente meno precise di stampe lente, e per oggetti in cui si richiede precisione dovrebbe essere preferita un velocità più bassa. Stampe veloci causano vibrazioni della struttura e instabilità nel flusso di materiale, per cui vanno fatte stampe di prova per valutare come la stampante si comporta alle varie velocità.\\
-
-\begin{wrapfigure} {R} {0.5\textwidth}
+The \emph{\textbf{Speed}} menu allows you to set the print speed. You can adjust the print speed of the shell and infill separately, the speed of movements without printing and the accelerations during the various printing phases.
+The \emph{jerk} is a parameter that manages the maximum instantaneous velocity change of the extruder; a low value softens accelerations and decelerations while a high value makes them brusque. The effect of jerk is more evident when working at high speeds \parencite{Reference53}. \\
+The printing speed must be adjusted according to the possibilities of the printer. Fast prints are generally less precise than slow prints, and for objects where accuracy is required a lower speed should be preferred. Fast prints cause vibration of the structure and instability in the flow of material, for which test prints must be made to evaluate how the printer behaves at various speeds.
+\begin{wrapfigure} {R} {0.4\textwidth}
 	%\centering
-	\includegraphics[width=0.5\textwidth, height=\textheight,keepaspectratio]{bowden}
-    \caption{Estrusore Bowden (Bowden extruder)}
+	\includegraphics[width=0.4\textwidth, height=\textheight,keepaspectratio]{bowden}
+    \caption{Bowden extruder}
     \label{fig:bowden}
 \end{wrapfigure}
-La velocità dipende anche dall'inerzia delle parti in movimento, per cui avere poche parti leggere in movimento sarebbe di aiuto per aumentare la velocità nelle operazioni stampa.
-Il sistema di estrusione del filamento nelle stampanti FDM è costituito essenzialmente da un estrusore ed un hotend. L'estrusore è la parte che spinge il filamento nell'hotend, il quale riscaldandosi sciogliendo il filamento, che fuoriesce dall'ugello sotto la spinta dell'estrusore. Spesso nelle stampanti FDM cartesiane è usata una estrusione definita \emph{diretta}, che consiste nell'estrusore collegato all'hotend, entrambi in movimento sugli assi.\\
-Per alleggerire la massa in movimento, e quindi l'inerzia, è possibile utilizzare una configurazione di estrusione definita \emph{bowden} \parencite{Reference54}, \parencite{Reference55}, dove l'estrusore è lontano dall'hotend. La diminuzione nella massa in movimento, dovuta alla dissociazione tra il processo di estrusione e quello di fusione del materiale, permette di stampare a velocità più alte senza degradare eccessivamente la qualità di stampa. Nell'estrusione bowden il filamento va dall'estrusore all'hotend generalmente passando attraverso un tubo in \emph{Teflon} (PTFE), e compie un tragitto decisamente più lungo rispetto all'estrusione diretta; ciò causa una minore responsività del filamento nelle fasi di estrusione e retrazione. Questo effetto può essere compensato in Cura regolando i parametri di priming e retrazione del filamento.
+
+The speed also depends on the inertia of moving parts, so having a few light moving parts would help to increase speed in printing operations.
+The filament extrusion system in FDM printers essentially consists of an extruder and an hotend. The extruder is the part that pushes the filament into the hotend, which warms up by dissolving the filament, which protrudes from the nozzle under the thrust of the extruder. Often in the Cartesian FDM printers a defined \emph{direct} extrusion is used, which consists of the extruder connected to the hotend, both moving on the axes.
+To lighten the moving mass, and hence the inertia, it is possible to use a defined extrusion configuration \emph{bowden} \parencite{Reference54}, \parencite{Reference55}, where the extruder is far from the hottest. The decrease in the moving mass, due to the dissociation between the extrusion process and the material melting process, allows printing at higher speeds without excessively degrading the print quality. In the bowden extrusion the filament goes from the extruder to the hotend generally passing through a tube in \emph{Teflon} (PTFE), and takes a decidedly longer path than the direct extrusion; this makes the filament less responsive in the extrusion and retraction steps. This effect can be compensated for by adjusting the parameters of priming and retraction of the filament.
 
 \subsection{Travel}
-Il menù \emph{\textbf{Travel}} contiene opzioni per gestire i movimenti della stampante durante i movimenti senza estrusione. L'opzione \emph{Combing Mode} restringe il movimento dell'ugello all'area di stampa del modello per ridurre la necessità di retrazione. Questo parametro può essere sempre attivo, attivo solo nell'infill o spento. Da regolare in base al modello che si intende stampare, ma attenzione al fatto che l'ugello si muove su un'area già stampata e potrebbe danneggiarla.\\
-Lo \emph{Z-Hop} è un movimento dell'estrusore sull'asse Z ad ogni retrazione; alzando l'estrusore della distanza inserita, evita che l'ugello tocchi la stampa durante gli spostamenti.
+The \emph{\textbf{Travel}} menu contains options for managing printer movements during movements without extrusion. The \emph{Combing Mode} option restricts the movement of the nozzle to the print area of the model to reduce the need for retraction. This parameter can always be active, only active in the infill or off. To be adjusted according to the model to be printed, but pay attention to the fact that the nozzle moves on an already printed area and could damage it.
+The \emph{Z-Hop} is a movement of the extruder on the Z axis at each retraction; by raising the extruder of the inserted distance, it prevents the nozzle from touching the print during the movements.
 
 \subsection{Cooling}
-Il menù \emph{\textbf{Cooling}} fornisce strumenti per regolare il comportamento della ventola durante la stampa. Durante la stampa del primo layer la ventola spenta favorisce una buona adesione tra l'oggetto e il piano di stampa; successivamente la velocità della ventola può essere aumentata fino al 100\%. Un buon raffreddamento del materiale permette di stampare livelli con angolazioni maggiori, usando meno supporti per le zone sospese (ponti).\\ Aumentare gradualmente la velocità della ventola è preferibile per i primi strati, perché ne limita la deformazione e il distacco dal piano, soprattutto con stampe di grandi dimensioni Alcuni materiali, come il \emph{nylon}, richiedono spesso poco o nessun raffreddamento durante la stampa, per prevenire deformazioni da contrazione \emph{Shrinkage} .
+The \emph{\textbf{Cooling}} menu provides tools for adjusting fan behavior during printing. During the printing of the first layer the blower turned off favors a good adhesion between the object and the printing plane; subsequently the fan speed can be increased up to 100\%. A good cooling of the material allows to print levels with greater angles, using less supports for suspended areas (bridges). \\ Gradually increase the fan speed is preferable for the first layers, because it limits the deformation and detachment from the plane, especially with large prints Some materials, such as \emph{nylon}, often require little or no cooling during printing, to prevent shrinkage deformation \emph{Shrinkage}.
 
 \subsection{Support}
-Il menù \emph{\textbf{Support}} da la possibilità di creare supporti per le aree sospese o fortemente inclinate del modello. Possono essere regolati vari parametri sulla quantità e la forma dei supporti, oltre che la distanza da mantenere dall'oggetto. Durante la creazione di supporti va cercato un compromesso tra vicinanza all'oggetto da sostenere e facilità nella rimozione.
-\begin{figure} [h]
+The menu \emph{\textbf{Support}} gives the possibility to create supports for the suspended or strongly inclined areas of the model. Various parameters can be adjusted on the quantity and shape of the supports, as well as the distance to be maintained by the object. During the creation of supports, a compromise must be sought between proximity to the object to be supported and ease in removal.
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth, height=\textheight,keepaspectratio]{Supports}
-    \caption{Supporti in verde}
+    \caption{Supports in green}
     \label{fig:Supports}
 \end{figure}
 
+\newpage
 	
 \subsection{Build Plate Adesion}
-Il menù \emph{\textbf{Build Plate Adesion}} permette di generare dei contorni o superfici per favorire l'adesione del primo strato dell'oggetto al piano.\\
+The \emph{\textbf{Build Plate Adesion}} menu allows to generate contours or surfaces to facilitate the adhesion of the first layer to the plane.
 
-\textbf{Skirt} è semplicemente un giro che di estrusione compiuto attorno al perimetro del modello da stampare, senza toccarlo; serve al priming dell'estrusore, ciò ad estrudere del materiale prima della stampa in modo che l'ugello sia pronto per iniziare il primo strato.\\
+\textbf{Skirt} is simply an extrusion turn made around the perimeter of the model to be printed, without touching it; it serves to prime the extruder, to extrude the material before printing so that the nozzle is ready to start the first layer.
 
-\textbf{Brim} è un contorno che si congiunge al margine del primo strato dell'oggetto. Se ne può regolare l'ampiezza ed è un aiuto importante nel mantenere i modelli aderenti al piano. È anche facile da rimuove e non lascia praticamente segni sul modello.\\
+\textbf{Brim} is a contour that joins the edge of the first layer of the object. Its width can be adjusted and is an important help to keep the models sticking to the floor. It is also easy to remove and leaves virtually no marks on the model.
 
-\textbf{Raft} è una griglia spessa pochi layers, prodotta tra il piano e l'oggetto. Raft migliora l'adesione anche su una superficie non regolare e permette una buona distribuzione del calore al modello. Utile per stampare materiali che si deformano molto in seguito al processo di stampa.
+\textbf{Raft} is a few layers thick grid, produced between the plane and the object. Raft improves the adhesion even on an irregular surface and allows a good distribution of heat to the model. Useful for printing materials that deform greatly due to the printing process.
+
 \begin{figure}[h]
- 
-\begin{subfigure}{0.5\textwidth}
+
+\begin{subfigure}{0.3\textwidth}
 \centering
-\includegraphics[width=0.7\linewidth, keepaspectratio]{skirt} 
+\includegraphics[width=0.6\linewidth, keepaspectratio]{skirt} 
 \caption{Skirt}
 \label{fig:skirt}
 \end{subfigure}
-\begin{subfigure}{0.5\textwidth}
+\begin{subfigure}{0.3\textwidth}
 \centering
-\includegraphics[width=0.7\linewidth, keepaspectratio]{brim}
+\includegraphics[width=0.6\linewidth, keepaspectratio]{brim}
 \caption{Brim}
 \label{fig:brim}
 \end{subfigure}
-\begin{subfigure}{0.5\textwidth}
+\begin{subfigure}{0.3\textwidth}
 \centering
-\includegraphics[width=0.9\linewidth, keepaspectratio]{raft}
+\includegraphics[width=0.8\linewidth, keepaspectratio]{raft}
 \caption{Raft}
 \label{fig:raft}
 \end{subfigure}
- 
-\caption{Opzioni delle basi di adesione in \emph{Build Plate Adesion}.}
+
+\caption{\emph{Build Plate Adesion}.}
 \label{fig:Build Plate Adesion}
 \end{figure}
+\vspace{-10pt}
+
+
 
 \subsection{Fixes, Special Modes ed Experimentals}
-Gli altri menù contengono altri controlli avanzati sulla riparazione della mesh durante la stampa, modalità di stampa speciali e funzioni sperimentali, che non sono fondamentali per le procedure qui descritte, ma che vale comunque la pena conoscere, perche utili in alcuni frangenti.\\
-Il \emph{\textbf{Special Modes}} troviamo l'opzione \emph{Print Sequence} da la possibilità di stampare gli oggetti sul piano tutti insieme oppure uno alla volta. \\
-L'opzione \emph{Mold} da la possibilità di creare dei negativi del modello, che possono essere stampati ed utilizzati per ricreare il modello che era originariamente sul piano.\\
-In \emph{\textbf{Experimental}}, la voce \emph{slicing tollerance} indica come si deve effettuare lo slicing delle superfici diagonali e ne influenza la modalità di slicing \parencite{Reference56}. Importante per gestire la tolleranza di componenti meccaniche che necessitano di una adeguata precisione.
+The other menus contain other advanced controls on the repair of the mesh during printing, special printing modes and experimental functions, which are not essential for the procedures described here, but which are still worth knowing, because they are useful in some situations.
+The \emph{\textbf{Special Modes}} we find the \emph{Print Sequence} option gives the possibility to print objects on the plane all together or one at a time. \\
+The \emph{Mold} option gives the possibility to create model negatives, which can be printed and used to recreate the model that was originally on the plane. \\
+In \emph{\textbf{Experimental}}, the entry \emph{slicing tolerance} indicates how to slice the diagonal surfaces and affects the slicing \parencite{Reference56} mode. Important to manage the tolerance of mechanical components that need adequate precision.
