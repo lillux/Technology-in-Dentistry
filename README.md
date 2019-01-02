@@ -8,3 +8,7 @@ The thesis is made to give an overview of modern Medical Imaging management with
 I will continue to update this thesis in an attempt to aggregate all the knowledge usefull for Medical Images Processing from 3D printing to FEA, Machine Learning and Biofabrication.
 
 Feel free to help me in this journey.
+
+
+Use the [Wiki](https://github.com/lillux/Technology-in-Dentistry/wiki
+ "Wiki") to read the book 
