@@ -1,4 +1,4 @@
-# Technology-in-Dentistry
+# Technology in Dentistry
 My dentistry graduation thesis.
 
 I'm actually translating it from Italian to English.
