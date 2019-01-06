@@ -28,7 +28,7 @@ Is possible to download anonymised datasets from \emph{The Cancer Imaging Archiv
 Several studies with various imaging techniques are available, which give the opportunity to deepen the analysis of various segments of the body and the oncological diseases that may occur.
 To use the images, follow the simple procedures described on the website. Once the data is obtained, it can be loaded directly onto the visualization software.
                              
-\section{How to use the dataset}
+\section{Open the dataset}
 The images obtained can then be uploaded to 3D Slicer for viewing and processing. We will use a set of images downloaded from \emph{The Cancer Imaging Archive} portal, located within the \path | TCGA - HNSC collection, Subject ID: TGCA-BA-6868, scan: Neck BW Axial|. \\
 The software uses the \emph{DICOM} module \parencite{Reference50} to load and manage diagnostic image sets. The \emph{Volume Rendering} module can be used to display a rendered image. \\
 With the \emph{Crop Volume} module it is possible to cut the volume part of our interest (Region of Interest, ROI), to lighten the computer from data that are not needed at the moment; it will be very useful later when we work with the models. In this example we want to create a model of the \emph{\textbf{mandibular bone}}, so we orientate the ROI in a way that contains the maxillary bones, and apply the modification.
@@ -40,8 +40,8 @@ With the \emph{Crop Volume} module it is possible to cut the volume part of our 
 \label{fig:crop}
 \end{figure}
 \vspace{-10pt}
-\section{Images Segmentation and Model Creation}
 
+\section{Images segmentation and model creation}
 We can then start the segmentation, using the \emph{Segment Editor} module. This module contains several tools that allow us to highlight the areas of the images of our interest. Since we want to extract the model of a bone, the mandible, a quick method is to use the \emph{bone density range} to quickly highlight the region of our interest. Then with the \emph{Add} button we add a segment and select the \emph{Threshold} tool which allows us to select a density range to highlight. The \emph{Data Probe} tool at the bottom left gives us information about the point in the image where the mouse tip is located, and contains an entry indicating the density at the point.
 Selecting the threshold we look for a compromise between completeness in capturing details and cleaning in the segmentation mask. We have the possibility to perform a manual finishing of the segmentation, so we can leave some unselected area from the threshold to have a greater cleaning between the parts to be segmented. We consider that the selected areas must be separated to be treated as different segment, except if a different segment is used for each area; in that case the selection voxels can be adjacent without merging the volumes into a single object.\\
 However, it is important to select the areas of interest in the best way, and in the CT we are segmenting a delicate point for the correct jaw separation is in the area of the condyles, where the selection is continuous with that of the anterior wall of the glenoid cavity of the temporal bone. Another point that have to be separated is the posterior region of the dental arch, at the level of the occlusal plane, where the teeth of the jaw are probably joined to the antagonists.
