@@ -1,5 +1,6 @@
 # Technology in Dentistry
-My dentistry graduation thesis.
+My dentistry graduation thesis. [Here is it!](https://github.com/lillux/Technology-in-Dentistry/wiki
+ "Wiki")
 
 I'm actually translating it from Italian to English.
 
@@ -11,4 +12,4 @@ Feel free to help me in this journey.
 
 
 Use the [Wiki](https://github.com/lillux/Technology-in-Dentistry/wiki
- "Wiki") to read the book 
+ "Wiki") to read the book.
