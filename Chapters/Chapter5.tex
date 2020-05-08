@@ -60,7 +60,7 @@ DLP printing also uses resin polymerization layer by layer, but instead of a las
 \vspace{-30pt}
 	\begin{center}
 	\includegraphics[width=0.40\textwidth, height=\textheight,keepaspectratio]{sls-technology}
-    \caption{Processo di stampa SLS}
+    \caption{SLS Printing}
     \label{fig:sls-technology}
     \end{center}
 \vspace{-40pt}
@@ -118,7 +118,7 @@ To calibrate the steps/mm on the axes, you need to know some parameters of the p
 
 \begin{itemize}
 \item \emph{\textbf{Angle per step}}: is the rotation that makes the axis for each step, measured in degrees. Generally corresponding to 1.8 degree/step (equal to 200 step/revolution) or 0.9/step (equal to 400 step/revolution). It is dependent on the stepper motor used.
-\item \emph{\textbf{Microstep}}: it depends on the interpolation capacity of the motherboard's stepper drivers that control the stepper motor \parencite{Reference5}, \parencite{Reference6}. The microstep consists in sending low power pulses to the motor, to make it perform fractions of steps. This theoretically increases the print resolution, but as the interpolation increases, the torque decreases, so the motor may not have enough energy to perform the movement. This means that the fraction of rotation will not be performed until the number of pulses necessary to give sufficient torque to the motion is accumulated.\\ To note, from StackExchange answer of the user cmm \parencite{Reference149} on ref. \parencite{Reference6}:
+\item \emph{\textbf{Microstep}}: it depends on the interpolation capacity of the motherboard's stepper drivers that control the stepper motor \parencite{Reference5}, \parencite{Reference6}. The microstep consists in sending low power pulses to the motor, to make it perform fractions of steps. This theoretically increases the print resolution, but as the interpolation increases, the torque decreases, so the motor may not have enough energy to perform the movement. This means that the fraction of rotation will not be performed until the number of pulses necessary to give sufficient torque to the motion is accumulated.\\ To note, from \emph{StackExchange} answer of the user \emph{\textbf{cmm}} \parencite{Reference149} on ref. \parencite{Reference6}:
 
 \begin{displayquote}
 A stepper motor torque-vs-position-error curve is like a sin curve.  There is zero torque at zero displacement, and maximum torque at one full-step displacement. This doesn't change with micro-stepping. Thus, if you are taking 1/128th of a full step, it will truly give you very little torque.  OTOH (On The Other Hand) if you happen to stop, given a full step, at 1/128th of a step in error, you will also have a very small torque toward the correct position.
@@ -144,7 +144,7 @@ At the end of the story, high microstepping gives a smoother movement to the ste
 \item For the extruder:
 
 \begin {itemize}
-\item step / mm = (step / rev * microstep) * / (diameter of the extrusion gear * pi)
+\item step / mm = (step / rev * microstep) / (diameter of the extrusion gear * pi)
 \item With reduction (\emph{wade extruder}): step / mm = (step / rev * microstep) * (n large pulley teeth / small pulley teeth) / (extrusion gear diameter * pi)
 \end{itemize}
 
@@ -158,4 +158,4 @@ Data can be plotted thanks to scripts on websites \parencite{Reference9}. The Du
 
 \section{Print}
 At the end of the printer's heating and leveling procedures, printing process begins. The use of brim is recommended to prime the extruder and to increase the adhesion of the object to the bed.\\
-To obtain a fine adjustment of the first layer there are some firmware (Marlin, RepRap firmware) that offer the \emph{BabyStep} option (in Marlin \emph{Babystepping}); it gives the possibility, during printing, to send real time axes position adjustments. The Babystep is very useful during first layer printing, because it gives us the possibility to precisely adjust the position of the nozzle with respect to the printing bed, facilitating the creation of a uniform and well spread first layer. After any adjustment with Babystep has been carried out, printing continues until the end.
+To obtain a fine adjustment of the first layer there are some firmware (Marlin, RepRap firmware) that offer the \emph{BabyStep} option (in Marlin \emph{Babystepping}, \parencite{Reference152}); it gives the possibility, during printing, to send real time axes position adjustments. The Babystep is very useful during first layer printing, because it gives us the possibility to precisely adjust the position of the nozzle with respect to the printing bed, facilitating the creation of a uniform and well spread first layer. After any adjustment with Babystep has been carried out, printing continues until the end.
